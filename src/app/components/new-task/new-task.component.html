@@ -1,0 +1,13 @@
+<div class="modal">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <input formControlName="title" placeholder="Title" required />
+      <textarea formControlName="description" placeholder="Description" required></textarea>
+      <select formControlName="priority" required>
+        <option value="todo">todo</option>
+        <option value="in-progress">in-progress</option>
+        <option value="done">done</option>
+      </select>
+      <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,38 @@
+<button class="addButton" (click)="openModal()">Add New Task</button>
+<div class="kanban-board">  
+  <div
+    id="todoColumn"
+    class="kanban-column kanban-column-ToDo"
+    cdkDropList
+    [cdkDropListConnectedTo]="['inProgressColumn', 'doneColumn']"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <h2>To Do</h2>
+    <app-task-card *ngFor="let task of todoTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+  </div>
+
+  <div
+    id="inProgressColumn"
+    class="kanban-column kanban-column-InProgress"
+    cdkDropList
+    [cdkDropListConnectedTo]="['todoColumn', 'doneColumn']"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <h2>In Progress</h2>
+    <app-task-card *ngFor="let task of inProgressTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+  </div>
+
+  <div
+    id="doneColumn"
+    class="kanban-column kanban-column-Done"
+    cdkDropList
+    [cdkDropListConnectedTo]="['todoColumn', 'inProgressColumn']"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <h2>Done</h2>
+    <app-task-card *ngFor="let task of doneTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+  </div>
+
+  <app-new-task-modal *ngIf="showModal" (taskAdded)="onTaskAdded($event)"></app-new-task-modal>
+
+</div>

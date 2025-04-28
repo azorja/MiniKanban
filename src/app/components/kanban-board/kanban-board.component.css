@@ -1,0 +1,120 @@
+/* Osnovni izgled za Kanban Board */
+.kanban-board {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;  
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.addButton {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px
+}
+
+/* Stilovi za kolonu */
+.kanban-column-ToDo h2 {
+  background-color: #4F46E5;
+}
+
+.kanban-column-InProgress h2 {
+  background-color: #F59E0B;
+}
+
+.kanban-column-Done h2 {
+  background-color: #22C55E;
+}
+
+.kanban-column {
+  width: 30%;
+  min-height: 400px;
+  /* background-color: #f4f4f4; */
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+.kanban-column h2 {
+  text-align: left;
+  /* background-color: #e6e6e6; */
+
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border-radius: 15px;
+  /* background-color: #4F46E5; */
+}
+
+/* Hover efekat na koloni */
+.kanban-column.cdk-drop-list-dragging {
+  background-color: #e6e6e6;
+}
+
+/* Stilovi za kartice zadataka */
+.task-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  cursor: move;
+  transition: transform 0.3s ease;
+}
+
+/* Animacija povlačenja kartice */
+.task-card.cdk-drag-preview {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.task-card.cdk-drag-placeholder {
+  background-color: #f0f0f0;
+  border: 1px dashed #ccc;
+  border-color: #ccc;
+  visibility: hidden;
+}
+
+/* Stilovi za responzivnost */
+@media (max-width: 960px) {
+  .kanban-column {
+    width: 46%;
+  }
+}
+
+@media (max-width: 600px) {
+  .kanban-column {
+    width: 100%;
+  }
+}
+
+.kanban-board {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.kanban-column h2 {
+  font-size: 1.5rem;
+  /* color: #007bff; */
+}
+
+.kanban-column .task-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover za kartice */
+.kanban-column .task-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
