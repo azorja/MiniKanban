@@ -16,6 +16,13 @@ import { NewTaskComponent } from '../new-task/new-task.component';
 export class KanbanBoardComponent {
   private taskService = inject(TaskService);
 
+  tabs: string[] = ['By Status', 'By Total Tasks', 'Tasks Due', 'Extra Tasks', 'Tasks Completed'];
+  activeTabIndex: number = 1;
+
+  selectTab(index: number) {
+    this.activeTabIndex = index;
+  }
+
   tasksSignal = signal<Task[]>([]);
   selectedTask: Task | null = null;
   showModal = false;

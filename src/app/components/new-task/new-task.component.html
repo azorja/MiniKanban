@@ -2,11 +2,21 @@
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
       <input formControlName="title" placeholder="Title" required />
       <textarea formControlName="description" placeholder="Description" required></textarea>
-      <select formControlName="priority" required>
+
+      <select formControlName="status" required>
+        <option value="" disabled hidden>Select status</option>
         <option value="todo">todo</option>
         <option value="in-progress">in-progress</option>
         <option value="done">done</option>
       </select>
+
+      <select formControlName="priority" required>
+        <option value="" disabled selected hidden>priority</option>
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </select>
+      
       <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
     </form>
   </div>

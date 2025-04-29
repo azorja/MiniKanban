@@ -90,7 +90,8 @@ export class TaskService {
       id: Date.now(),
       title: newTask.title || 'Untitled',
       status: newTask.status || 'todo',
-      description: newTask.description || ''
+      description: newTask.description || '',
+      priority: newTask.priority
     };
 
     const updatedTasks = [...this.tasksSignal(), task];
@@ -107,5 +108,6 @@ export class TaskService {
           this.toastService.show('Failed to sync task with server.');
         }
       });
+      this.updateTaskStatus(task.id, task.status);
   }
 }

@@ -1,4 +1,11 @@
 <div class="task-card" cdkDrag [cdkDragData]="task">
+  <h4 [ngClass]="{
+      'low-priority': task.priority === 'low',
+      'medium-priority': task.priority === 'medium',
+      'high-priority': task.priority === 'high'
+    }">
+    {{ task.priority }}
+  </h4>
   <h3>{{ task.title }}</h3>
-  <h2>{{ task.description }}</h2>
+  <div class="description">{{ task.description }}</div>
 </div>

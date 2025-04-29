@@ -1,38 +1,115 @@
-<button class="addButton" (click)="openModal()">Add New Task</button>
-<div class="kanban-board">  
-  <div
-    id="todoColumn"
-    class="kanban-column kanban-column-ToDo"
-    cdkDropList
-    [cdkDropListConnectedTo]="['inProgressColumn', 'doneColumn']"
-    (cdkDropListDropped)="onDrop($event)"
-  >
-    <h2>To Do</h2>
-    <app-task-card *ngFor="let task of todoTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+<div class="app-container">
+
+  <div class="sidebar">
+    <div class="Slothui">Slothui</div>
+    <div class="search-container">
+      <input type="text" placeholder="Search..." class="search-input" />
+    </div>
+
+    <nav class="nav-tabs">
+      <div class="nav-tab">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-tasks"></i>
+        <span>Tasks</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-users"></i>
+        <span>Users</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-box"></i>
+        <span>APIs</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-file-alt"></i>
+        <span>Subscription</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </div>
+      <div class="nav-tab">
+        <i class="fas fa-comments"></i>
+        <span>Help & Support</span>
+      </div>
+    </nav>
   </div>
 
-  <div
-    id="inProgressColumn"
-    class="kanban-column kanban-column-InProgress"
-    cdkDropList
-    [cdkDropListConnectedTo]="['todoColumn', 'doneColumn']"
-    (cdkDropListDropped)="onDrop($event)"
-  >
-    <h2>In Progress</h2>
-    <app-task-card *ngFor="let task of inProgressTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+  <div class="main-content">
+    <div class="top-bar">
+      <h1>Kanban Dashboard</h1>
+      <div class="tabs">
+        <div 
+          class="tab" 
+          *ngFor="let tab of tabs; let i = index" 
+          [ngClass]="{'active': activeTabIndex === i}" 
+          (click)="selectTab(i)">
+          {{ tab }}
+        </div>
+        <div class="sortOptions">
+          <label for="sortSelect" class="sort-label">Sort By</label>
+          <select id="sortSelect" class="sort-dropdown">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+      </div>  
+    </div>
+
+    
+    <div class="content-area">
+      <div class="kanban-board">  
+        <div
+          id="todoColumn"
+          class="kanban-column kanban-column-ToDo"
+          cdkDropList
+          [cdkDropListConnectedTo]="['inProgressColumn', 'doneColumn']"
+          (cdkDropListDropped)="onDrop($event)"
+        >
+          <h2>
+            To Do 
+            <button class="addButtonPlusICON" (click)="openModal()">+</button>
+          </h2>    
+
+          <button class="addButtonPlusICON" (click)="openModal()">'+'</button>
+
+          <app-task-card *ngFor="let task of todoTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+        </div>
+
+        <div
+          id="inProgressColumn"
+          class="kanban-column kanban-column-InProgress"
+          cdkDropList
+          [cdkDropListConnectedTo]="['todoColumn', 'doneColumn']"
+          (cdkDropListDropped)="onDrop($event)"
+        >
+          <h2>
+            In Progress
+            <button class="addButtonPlusICON" (click)="openModal()">+</button>
+          </h2>
+          <app-task-card *ngFor="let task of inProgressTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+        </div>
+
+        <div
+          id="doneColumn"
+          class="kanban-column kanban-column-Done"
+          cdkDropList
+          [cdkDropListConnectedTo]="['todoColumn', 'inProgressColumn']"
+          (cdkDropListDropped)="onDrop($event)"
+        >
+          <h2>
+            Done
+            <button class="addButtonPlusICON" (click)="openModal()">+</button>
+          </h2>
+          <app-task-card *ngFor="let task of doneTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
+        </div>
+        </div>
+
+      <app-new-task-modal *ngIf="showModal" (taskAdded)="onTaskAdded($event)"></app-new-task-modal>
+
+    </div>
   </div>
-
-  <div
-    id="doneColumn"
-    class="kanban-column kanban-column-Done"
-    cdkDropList
-    [cdkDropListConnectedTo]="['todoColumn', 'inProgressColumn']"
-    (cdkDropListDropped)="onDrop($event)"
-  >
-    <h2>Done</h2>
-    <app-task-card *ngFor="let task of doneTasks()" [task]="task" cdkDrag [cdkDragData]="task"></app-task-card>
-  </div>
-
-  <app-new-task-modal *ngIf="showModal" (taskAdded)="onTaskAdded($event)"></app-new-task-modal>
-
 </div>

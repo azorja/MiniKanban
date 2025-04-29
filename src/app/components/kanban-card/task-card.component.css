@@ -3,8 +3,43 @@
   background-color: white;
   border: 1px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 25px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   cursor: move;
   height: 190px;
 }
+
+.task-card h4 {
+  width: 70px;
+  border-radius: 25px;
+  text-align: center;
+  padding: 2px;  
+}
+
+.description {
+  max-width: 100%;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+}
+
+.task-card h4.low-priority {
+  background-color: #f0fdf4;
+  color: #22c55e;
+}
+
+.task-card h4.medium-priority {
+  background-color: #fffbeb;
+  color: #f59e0b;
+}
+
+.task-card h4.high-priority {
+  background-color: #fff1f2;
+  color: #f43f5e;
+}
+
